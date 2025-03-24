@@ -1,0 +1,14 @@
+[Unit]
+Description=Assign ZeroTier IP to ztw4lbsydf interface
+After=network-online.target zerotier-one.service
+Wants=network-online.target zerotier-one.service
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/sleep 10
+ExecStart=/usr/sbin/ip addr add 192.168.191.1/24 dev ztw4lbsydf
+ExecStartPost=/usr/sbin/ip link set dev ztw4lbsydf up
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Update Pi-hole's lists from remote sources
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pihole-updatelists
+ExecStartPost=/usr/local/bin/pihole -g
+TimeoutStartSec=infinity
