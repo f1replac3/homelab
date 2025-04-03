@@ -1,6 +1,7 @@
 # Homelab
 
-This repository documents the architecture, configuration, and automation of my personal homelab.
+This repository documents the architecture, configuration, and automation of my personal homelab. I am using this repository as a way to document my steps for future me, as well as organize my plans working forward, as well as learning git.
+
 
 ---
 
