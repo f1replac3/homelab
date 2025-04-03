@@ -4,7 +4,7 @@ This repository documents the architecture, configuration, and automation of my 
 
 ---
 
-## 🔍 Purpose
+## Purpose
 
 The homelab is a self-hosted environment for:
 
@@ -19,7 +19,7 @@ The homelab is a self-hosted environment for:
 
 ---
 
-## 🖥 Current Topology
+## Current Topology
 
 ### LAN Subnet: `10.0.10.0/24`
 
@@ -36,7 +36,7 @@ The homelab is a self-hosted environment for:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```bash
 homelab/
@@ -50,7 +50,7 @@ homelab/
 
 ---
 
-## 🚀 Roadmap
+## Roadmap
 
 ### Short-Term
 
@@ -58,7 +58,7 @@ homelab/
 - [x] Full DNS stack with Unbound and Pi-hole
 - [x] Automate blocklist updates with `pihole-updatelists`
 - [ ] Document bootstrap scripts for fast provisioning
-- [ ] Push everything to GitHub and apply GitOps patterns
+- [x] Push everything to GitHub and apply GitOps patterns
 
 ### Medium-Term
 
@@ -75,7 +75,7 @@ homelab/
 
 ---
 
-## 🛠 Tooling and Practices
+## Tooling and Practices
 
 - Git for version control
 - Systemd timers for automation
@@ -84,9 +84,13 @@ homelab/
 - Fedora Server for Pi-hole deployment
 - Structured documentation in `.md` format
 - GitOps: configuration and infra as code
+  - Terraform
+  - Ansible
+
 
 ---
 
-## 🧠 Philosophy
+## Philosophy
 
-Build a self-hosted lab that mirrors real-world infrastructure, using production-grade tools, with full control, transparency, and flexibility — with privacy and learning as first-class goals.
+Build a self-hosted lab that mirrors real-world infrastructure, using production-grade tools, with full control, transparency, and flexibility — focusing on high availability, privacy and security, and automation as primary goals.
+
