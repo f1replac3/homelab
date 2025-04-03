@@ -31,7 +31,11 @@ chmod +x install.sh
 sudo ./install.sh
 ```
 
-### Replace systemd units:
+---
+
+## Replace systemd units:
+I am using custom systemd units... This was more to just learn about systemd units in general, pihole ships with perfectly suitable ones.
+
 
 Move the defaults:
 ```bash
@@ -43,13 +47,16 @@ Copy your custom `.service` and `.timer` into `/etc/systemd/system/`, then:
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now pihole-updatelists.timer
+sudo systemctl enable --now pihole-updatelists.service
 ```
 
 ---
 
 ## blocklists.txt
 
-Create this in your Git repo:
+Created this `.txt` file in my repo:
+(add whatever other lists are nice, I used lists from: [firebog](https://firebog.net))
+
 
 ```text
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
