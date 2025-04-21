@@ -1,0 +1,31 @@
+# traefik.yml — static configuration
+
+log:
+  level: DEBUG  # Change to "INFO" or "ERROR" for less noise
+
+api:
+  dashboard: true
+  insecure: true  # Expose dashboard on port 8080 (for now — can route later via traefik_dynamic.yml)
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false  # Only route containers with explicit labels
+  file:
+    filename: /etc/traefik/traefik_dynamic.yml
+    watch: true  # Auto-reload on changes
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: max.broaddus@gmail.com  # Replace with your email if you go public
+      storage: /acme.json
+      httpChallenge:
+        entryPoint: web
+

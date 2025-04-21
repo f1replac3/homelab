@@ -1,0 +1,96 @@
+http:
+  routers:
+    pihole:
+      rule: "Host(`pihole.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: pihole-svc
+      tls:
+        certResolver: letsencrypt
+
+    grafana:
+      rule: "Host(`grafana.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: grafana-svc
+      tls:
+        certResolver: letsencrypt
+
+    prometheus:
+      rule: "Host(`prometheus.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: prometheus-svc
+      tls:
+        certResolver: letsencrypt
+
+    glances:
+      rule: "Host(`glances.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: glances-svc
+      tls:
+        certResolver: letsencrypt
+
+    cadvisor:
+      rule: "Host(`cadvisor.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: cadvisor-svc
+      tls:
+        certResolver: letsencrypt
+
+    traefik-dashboard:
+      rule: "Host(`traefik.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: api@internal
+      tls:
+        certResolver: letsencrypt
+
+    portainer:
+      rule: "Host(`portainer.max.lab`)"
+      entryPoints:
+        - web
+        - websecure
+      service: portainer-svc
+      tls:
+        certResolver: letsencrypt
+
+
+  services:
+    pihole-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.7"
+
+    grafana-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.5:3000"
+
+    prometheus-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.5:9090"
+
+    glances-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.5:61208"
+
+    cadvisor-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.5:8080"
+    
+    portainer-svc:
+      loadBalancer:
+        servers:
+          - url: "http:10.0.10.8:9000"
