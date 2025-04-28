@@ -25,11 +25,11 @@ Each directory represents a critical aspect of the environment — services are 
 
 ```bash
 homelab/
-├── [docker/](docker/)          # Containerized service definitions (pihole, traefik, observability, etc.)
-├── [docs/](docs/)              # Project documentation organized by domain (DNS, VPN, proxy, observability, infrastructure)
-├── [infrastructure/](infrastructure/)  # Base infrastructure configuration (networking, hosts, hardware, legacy setups)
-├── [scripts/](scripts/)        # Automation scripts and setup helpers
-├── README.md                   # Project overview and philosophy
+├── docker/             # Containerized service definitions (pihole, traefik, observability, etc.)
+├── docs/               # Project documentation organized by domain (DNS, VPN, proxy, observability, infrastructure)
+├── infrastructure/     # Base infrastructure configuration (networking, hosts, hardware, legacy setups)
+├── scripts/            # Automation scripts and setup helpers
+├── README.md           # Project overview and philosophy
 ```
 
 - **[docker/](docker/)**: Docker Compose definitions for containerized services, with modular separation by service type.
