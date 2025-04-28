@@ -32,10 +32,10 @@ homelab/
 ├── README.md           # Project overview and philosophy
 ```
 
-- **[docker/](docker/)**: Docker Compose definitions for containerized services, with modular separation by service type.
-- **[docs/](docs/)**: Organized documentation for each functional domain, reflecting the evolving state of the lab.
+- **[docker/](docker/)**: Docker Compose and configs by services.
+- **[docs/](docs/)**: Documentation for each service or tool.
 - **[infrastructure/](infrastructure/)**: Core infrastructure configuration — including networking, hosts, hardware plans, and legacy notes.
-- **[scripts/](scripts/)**: Practical automation to bootstrap and maintain systems reliably and reproducibly.
+- **[scripts/](scripts/)**: Automation scripts (ongoing).
 - **README.md**: This document — the high-level map of design, goals, philosophy, and structure.
 
 The structure is built for clarity and flexibility: systems evolve, but the principles of organization endure.
