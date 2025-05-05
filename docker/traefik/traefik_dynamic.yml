@@ -8,14 +8,15 @@ tls:
 http:
   middlewares:
     secured-headers:
-      sslRedirect: true
-      frameDeny: true
-      browserXssFilter: true
-      contentTypeNosniff: true
-      referrerPolicy: "strict-origin-when-cross-origin"
-      stsSeconds: 63072000
-      stsIncludeSubdomains: true
-      stsPreload: true
+      headers:
+        sslRedirect: true
+        frameDeny: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        referrerPolicy: "strict-origin-when-cross-origin"
+        stsSeconds: 63072000
+        stsIncludeSubdomains: true
+        stsPreload: true
 
   routers:
     proxmox:
