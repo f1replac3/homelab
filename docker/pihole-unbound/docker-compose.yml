@@ -59,3 +59,18 @@ services:
     networks:
       pihole_dns_network:
         ipv4_address: 172.21.0.4
+  
+  pihole-exporter:
+    image: ekofr/pihole-exporter:latest
+    container_name: pihole-exporter
+    restart: unless-stopped
+    environment:
+      - PIHOLE_HOSTNAME=http://pihole  # or use the container IP if DNS doesn't resolve
+      - PIHOLE_PASSWORD=rootpi         # match your WEBPASSWORD
+      - INTERVAL=60s
+    ports:
+      - "9617:9617"
+    networks:
+      pihole_dns_network:
+        ipv4_address: 172.21.0.5
+
