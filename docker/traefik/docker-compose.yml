@@ -15,7 +15,6 @@ services:
       - /root/certs:/certs:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - ./traefik_dynamic.yml:/etc/traefik/traefik_dynamic.yml:ro
-      - ./acme.json:/acme.json
     labels:
       - "traefik.enable=true"  # Just in case you eventually want to route Traefik itself
 
