@@ -91,6 +91,8 @@ services:
       - observability_net
 
 networks:
+  observability_net:
+    driver: bridge
 
 volumes:
   grafana_data:
