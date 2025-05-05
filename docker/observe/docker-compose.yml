@@ -11,6 +11,16 @@ services:
     networks:
       - observability_net
 
+  portainer_agent:
+    image: portainer/agent:latest
+    container_name: portainer_agent
+    restart: unless-stopped
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -79,8 +89,6 @@ services:
       - observability_net
 
 networks:
-  observability_net:
-    driver: bridge
 
 volumes:
   grafana_data:
