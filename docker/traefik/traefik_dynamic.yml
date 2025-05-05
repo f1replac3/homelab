@@ -122,7 +122,7 @@ http:
     portainer-svc:
       loadBalancer:
         servers:
-          - url: "http://10.0.10.8:9000"
+          - url: "http://10.0.10.5:9000"
 
     proxmox-svc:
       loadBalancer:
