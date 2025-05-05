@@ -12,6 +12,7 @@ services:
       - "443:443"     # HTTPS
       - "8080:8080"   # Traefik dashboard
     volumes:
+      - /root/certs:/certs:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - ./traefik_dynamic.yml:/etc/traefik/traefik_dynamic.yml:ro
       - ./acme.json:/acme.json
