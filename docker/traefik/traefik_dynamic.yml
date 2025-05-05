@@ -1,11 +1,12 @@
-serversTransports:
-  proxmox-insecure:
-    insecureSkipVerify: true
 tls:
   certificates:
     - certFile: /root/certs/fullchain.pem
       keyFile: /root/certs/privkey.pem
 http:
+  serversTransports:
+    proxmox-insecure:
+      insecureSkipVerify: true
+      
   middlewares:
     secured-headers:
       headers:
