@@ -17,4 +17,13 @@ services:
       - ./traefik_dynamic.yml:/etc/traefik/traefik_dynamic.yml:ro
     labels:
       - "traefik.enable=true"  # Just in case you eventually want to route Traefik itself
-
+  
+  portainer_agent:
+    image: portainer/agent:latest
+    container_name: portainer_agent
+    restart: unless-stopped
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
