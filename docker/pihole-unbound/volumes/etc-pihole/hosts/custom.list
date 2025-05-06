@@ -17,10 +17,14 @@
 #                       WITHIN /etc/dnsmasq.d/yourname.conf                      #
 #    (make sure misc.etc_dnsmasq_d is set to true in /etc/pihole/pihole.toml)    #
 #                                                                                #
-#                      Last updated: 2025-05-05 16:58:59 MDT                     #
+#                      Last updated: 2025-05-05 18:07:49 MDT                     #
 #                               by FTL version v6.1                              #
 #                                                                                #
 ##################################################################################
 
+10.0.10.7 pihole.max.lab
+10.0.10.8 portainer.max.lab
+10.0.10.10 proxmox.max.lab
 
-# There are currently no entries in this file
+
+# There are 3 entries in this file

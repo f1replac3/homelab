@@ -43,6 +43,7 @@ services:
       PIHOLE_DNS_: 172.21.0.2#5335
       DNSMASQ_LISTENING: all
       DNSSEC: true
+      DNSMASQ_USER: root
     volumes:
       - ./volumes/etc-pihole:/etc/pihole
       - ./volumes/etc-dnsmasq.d:/etc/dnsmasq.d
@@ -65,7 +66,7 @@ services:
     container_name: pihole-exporter
     restart: unless-stopped
     environment:
-      - PIHOLE_HOSTNAME=http://pihole  # or use the container IP if DNS doesn't resolve
+      - PIHOLE_HOSTNAME=10.0.10.7  # or use the container IP if DNS doesn't resolve
       - PIHOLE_PASSWORD=rootpi         # match your WEBPASSWORD
       - INTERVAL=60s
     ports:
