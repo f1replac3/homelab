@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2025-05-05 17:53:24 MDT
+# Last updated on 2025-05-05 19:34:17 MDT
 
 [dns]
   # Array of upstream DNS servers used by Pi-hole
@@ -99,7 +99,9 @@
   #
   # Possible values are:
   #     Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
-  hosts = []
+  hosts = [
+    "10.0.10.6 proxmox.max.lab"
+  ] ### CHANGED, default = []
 
   # If set, A and AAAA queries for plain names, without dots or domain parts, are never
   # forwarded to upstream nameservers
@@ -141,7 +143,7 @@
   bogusPriv = true
 
   # Validate DNS replies using DNSSEC?
-  dnssec = true ### CHANGED, default = false
+  dnssec = false
 
   # Interface to use for DNS (see also dnsmasq.listening.mode) and DHCP (if enabled)
   #
@@ -702,13 +704,12 @@
   # Possible values are:
   #     array of HTTP headers
   headers = [
-    "X-DNS-Prefetch-Control: off",
     "Content-Security-Policy: default-src 'self' 'unsafe-inline';",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
     "Referrer-Policy: strict-origin-when-cross-origin"
-  ]
+  ] ### CHANGED, default = [ "X-DNS-Prefetch-Control: off", "Content-Security-Policy: default-src 'self' 'unsafe-inline';", "X-Frame-Options: DENY", "X-XSS-Protection: 0", "X-Content-Type-Options: nosniff", "Referrer-Policy: strict-origin-when-cross-origin" ]
 
   # Should the web server serve all files in webserver.paths.webroot directory? If
   # disabled, only files within the path defined through webserver.paths.webhome and
@@ -805,13 +806,13 @@
     max_sessions = 16
 
     # Should FTL prettify the API output (add extra spaces, newlines and indentation)?
-    prettyJSON = false
+    prettyJSON = true ### CHANGED, default = false
 
     # API password hash
     #
     # Possible values are:
     #     <valid Pi-hole password hash>
-    pwhash = "$BALLOON-SHA256$v=1$s=1024,t=32$lRsN7CFGISLHRt6TLEI+/w==$NUCk4Z8L7WI2E+e/M0CdrKsj0MwC917uK3TUJgozULw=" ### CHANGED, default = ""
+    pwhash = "$BALLOON-SHA256$v=1$s=1024,t=32$IOn91C1nfmpMlZin4Fh68g==$RfIkKUfxB7gzzwfv8kbEZqrOZ7VHwDaHlNsw7HD9juc=" ### CHANGED, default = ""
 
     # Pi-hole 2FA TOTP secret. When set to something different than "", 2FA authentication
     # will be enforced for the API and the web interface. This setting is write-only, you
@@ -1201,6 +1202,6 @@
   all = false
 
 # Configuration statistics:
-# 156 total entries out of which 151 entries are default
-# --> 5 entries are modified
+# 156 total entries out of which 149 entries are default
+# --> 7 entries are modified
 

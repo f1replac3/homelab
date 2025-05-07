@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2025-05-05 18:08:38 MDT
+# Last updated on 2025-05-05 19:34:40 MDT
 
 [dns]
   # Array of upstream DNS servers used by Pi-hole
@@ -10,7 +10,6 @@
   # Possible values are:
   #     array of IP addresses and/or hostnames, optionally with a port (#...)
   upstreams = [
-    "127.0.0.1#5335",
     "172.21.0.2#5335"
   ] ### CHANGED, default = []
 
@@ -101,9 +100,9 @@
   # Possible values are:
   #     Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
   hosts = [
-    "10.0.10.7 pihole.max.lab",
-    "10.0.10.8 portainer.max.lab",
-    "10.0.10.10 proxmox.max.lab"
+    "10.0.10.6 proxmox.max.lab",
+    "10.0.10.6 traefik.max.lab",
+    "10.0.10.6 grafana.max.lab"
   ] ### CHANGED, default = []
 
   # If set, A and AAAA queries for plain names, without dots or domain parts, are never
@@ -809,7 +808,7 @@
     max_sessions = 16
 
     # Should FTL prettify the API output (add extra spaces, newlines and indentation)?
-    prettyJSON = false
+    prettyJSON = true ### CHANGED, default = false
 
     # API password hash
     #
@@ -943,7 +942,7 @@
   #
   # Possible values are:
   #     <any Pi-hole macvendor database>
-  macvendor = "/etc/pihole/macvendor.db"
+  macvendor = "/macvendor.db" ### CHANGED, default = "/etc/pihole/macvendor.db"
 
   # The old config file of Pi-hole used before v6.0
   #
@@ -1205,6 +1204,6 @@
   all = false
 
 # Configuration statistics:
-# 156 total entries out of which 151 entries are default
-# --> 5 entries are modified
+# 156 total entries out of which 149 entries are default
+# --> 7 entries are modified
 

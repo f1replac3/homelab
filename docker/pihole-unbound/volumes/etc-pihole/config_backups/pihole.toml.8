@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2025-05-05 17:05:28 MDT
+# Last updated on 2025-05-05 19:33:30 MDT
 
 [dns]
   # Array of upstream DNS servers used by Pi-hole
@@ -10,8 +10,7 @@
   # Possible values are:
   #     array of IP addresses and/or hostnames, optionally with a port (#...)
   upstreams = [
-    "8.8.8.8",
-    "8.8.4.4"
+    "172.21.0.2#5335"
   ] ### CHANGED, default = []
 
   # Use this option to control deep CNAME inspection. Disabling it might be beneficial
@@ -100,7 +99,10 @@
   #
   # Possible values are:
   #     Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
-  hosts = []
+  hosts = [
+    "10.0.10.7 pihole.max.lab",
+    "10.0.10.6 grafana.max.lab"
+  ] ### CHANGED, default = []
 
   # If set, A and AAAA queries for plain names, without dots or domain parts, are never
   # forwarded to upstream nameservers
@@ -190,7 +192,7 @@
   #       configuration file. This is useful if you want to manually configure the
   #       listening mode in auxiliary configuration files. This option is really meant
   #       for advanced users only, support for this option may be limited.
-  listeningMode = "LOCAL"
+  listeningMode = "ALL" ### CHANGED, default = "LOCAL"
 
   # Log DNS queries and replies to pihole.log
   queryLogging = true
@@ -703,13 +705,12 @@
   # Possible values are:
   #     array of HTTP headers
   headers = [
-    "X-DNS-Prefetch-Control: off",
     "Content-Security-Policy: default-src 'self' 'unsafe-inline';",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
     "Referrer-Policy: strict-origin-when-cross-origin"
-  ]
+  ] ### CHANGED, default = [ "X-DNS-Prefetch-Control: off", "Content-Security-Policy: default-src 'self' 'unsafe-inline';", "X-Frame-Options: DENY", "X-XSS-Protection: 0", "X-Content-Type-Options: nosniff", "Referrer-Policy: strict-origin-when-cross-origin" ]
 
   # Should the web server serve all files in webserver.paths.webroot directory? If
   # disabled, only files within the path defined through webserver.paths.webhome and
@@ -806,13 +807,13 @@
     max_sessions = 16
 
     # Should FTL prettify the API output (add extra spaces, newlines and indentation)?
-    prettyJSON = false
+    prettyJSON = true ### CHANGED, default = false
 
     # API password hash
     #
     # Possible values are:
     #     <valid Pi-hole password hash>
-    pwhash = "$BALLOON-SHA256$v=1$s=1024,t=32$lRsN7CFGISLHRt6TLEI+/w==$NUCk4Z8L7WI2E+e/M0CdrKsj0MwC917uK3TUJgozULw=" ### CHANGED, default = ""
+    pwhash = "$BALLOON-SHA256$v=1$s=1024,t=32$IOn91C1nfmpMlZin4Fh68g==$RfIkKUfxB7gzzwfv8kbEZqrOZ7VHwDaHlNsw7HD9juc=" ### CHANGED, default = ""
 
     # Pi-hole 2FA TOTP secret. When set to something different than "", 2FA authentication
     # will be enforced for the API and the web interface. This setting is write-only, you
@@ -1202,6 +1203,6 @@
   all = false
 
 # Configuration statistics:
-# 156 total entries out of which 153 entries are default
-# --> 3 entries are modified
+# 156 total entries out of which 149 entries are default
+# --> 7 entries are modified
 
