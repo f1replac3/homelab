@@ -24,7 +24,7 @@ services:
 
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: jacklul/pihole:latest
     hostname: pihole
     depends_on:
       - unbound
@@ -43,11 +43,17 @@ services:
       PIHOLE_DNS_: 172.21.0.2#5335
       DNSMASQ_LISTENING: all
       DNSSEC: true
-      DNSMASQ_USER: root
+      #DNSMASQ_USER: root
+      BLOCKLISTS_URL: 'https://v.firebog.net/hosts/lists.php?type=tick'
+      #ALLOWLISTS_URL: ''
+      #WHITELIST_URL: ''
+      #REGEX_WHITELIST_URL: ''
+      #BLACKLIST_URL: ''
+      REGEX_BLACKLIST_URL: 'https://raw.githubusercontent.com/mmotti/pihole-regex/master/regex.list'
     volumes:
       - ./volumes/etc-pihole:/etc/pihole
       - ./volumes/etc-dnsmasq.d:/etc/dnsmasq.d
-
+      - ./volumes/etc-pihole-updatelists:/etc/pihole-updatelists
   portainer-agent:
     image: portainer/agent:latest
     container_name: portainer-agent
