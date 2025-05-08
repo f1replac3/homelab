@@ -34,8 +34,11 @@ services:
       - ./configs/grafana_dashboards:/etc/grafana/provisioning/dashboards/json:ro
       - ./configs/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=grafana-admin
+      - GF_SECURITY_ADMIN_USER__FILE: /run/secrets/gf-admin-username
+      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/gf-admin-password
+    secrets:
+      - gf-admin-username
+      - gf-admin-password
     networks:
       - observability_net
 
@@ -85,3 +88,10 @@ networks:
 volumes:
   grafana_data:
   portainer_data:
+
+secrets:
+  gf-admin-username:
+    file: ./secrets/gf-admin-username.txt
+  gf-admin-password:
+    file: ./secrets/gf-admin-password.txt
+
