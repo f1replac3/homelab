@@ -92,6 +92,14 @@ http:
       middlewares:
         - secured-headers
 
+    influx:
+      rule: "Host(`influx.max.lab`)"
+      entryPoints:
+        -websecure
+      service: influx-svc
+      tls: {}
+      middlewares:
+        - secured-headers
 
   services:
     pihole-svc:
@@ -130,3 +138,8 @@ http:
           - url: "https://10.0.10.10:8006"
         passHostHeader: true
         serversTransport: proxmox-insecure
+    
+    influx-svc:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.10.5:8086"
