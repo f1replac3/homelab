@@ -34,8 +34,8 @@ services:
       - ./configs/grafana_dashboards:/etc/grafana/provisioning/dashboards/json:ro
       - ./configs/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
     environment:
-      - GF_SECURITY_ADMIN_USER__FILE: /run/.secrets/gf-admin-username
-      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/.secrets/gf-admin-password
+      GF_SECURITY_ADMIN_USER__FILE: /run/secrets/gf-admin-username
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/gf-admin-password
     secrets:
       - gf-admin-username
       - gf-admin-password
@@ -81,6 +81,29 @@ services:
     networks:
       - observability_net
 
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME_FILE: /run/secrets/influxdb_admin_user
+      DOCKER_INFLUXDB_INIT_PASSWORD_FILE: /run/secrets/influxdb_admin_password
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN_FILE: /run/secrets/influxdb_admin_token
+      DOCKER_INFLUXDB_INIT_ORG: max-lab
+      DOCKER_INFLUXDB_INIT_BUCKET: proxmox-metrics
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    secrets:
+      - influxdb_admin_user
+      - influxdb_admin_password
+      - influxdb_admin_token
+    networks:
+      - observability_net
+
 networks:
   observability_net:
     driver: bridge
@@ -88,10 +111,17 @@ networks:
 volumes:
   grafana_data:
   portainer_data:
+  influxdb_data:
+  influxdb_config:
 
 secrets:
   gf-admin-username:
     file: ./.secrets/gf-admin-username.txt
   gf-admin-password:
     file: ./.secrets/gf-admin-password.txt
-
+  influxdb_admin_user:
+    file: ./.secrets/influxdb_admin_user.txt
+  influxdb_admin_password:
+    file: ./.secrets/influxdb_admin_password.txt
+  influxdb_admin_token:
+    file: ./.secrets/influxdb_admin_token.txt
