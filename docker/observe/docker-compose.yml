@@ -34,8 +34,8 @@ services:
       - ./configs/grafana_dashboards:/etc/grafana/provisioning/dashboards/json:ro
       - ./configs/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
     environment:
-      - GF_SECURITY_ADMIN_USER__FILE: /run/secrets/gf-admin-username
-      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/gf-admin-password
+      - GF_SECURITY_ADMIN_USER__FILE: /run/.secrets/gf-admin-username
+      - GF_SECURITY_ADMIN_PASSWORD__FILE: /run/.secrets/gf-admin-password
     secrets:
       - gf-admin-username
       - gf-admin-password
@@ -91,7 +91,7 @@ volumes:
 
 secrets:
   gf-admin-username:
-    file: ./secrets/gf-admin-username.txt
+    file: ./.secrets/gf-admin-username.txt
   gf-admin-password:
-    file: ./secrets/gf-admin-password.txt
+    file: ./.secrets/gf-admin-password.txt
 
